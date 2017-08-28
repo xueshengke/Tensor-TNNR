@@ -23,8 +23,8 @@ function [X_best_rec, result] = lrtc_ttnn(M, omega, opts)
 %       obj     -    objective function value
 %       iter    -    number of iterations
 
-out_tol = 5e-3; 
-out_iter = 100;
+out_tol = 1e-3; 
+out_iter = 50;
 % rho = 1.1;
 % mu = 1e-1;
 % max_mu = 1e10;
@@ -37,7 +37,7 @@ if ~exist('opts', 'var')
     opts = [];
 end
 if isfield(opts, 'tol');         out_tol = opts.out_tol;      end
-if isfield(opts, 'max_iter');    out_iter = opts.max_iter;    end
+if isfield(opts, 'out_iter');    out_iter = opts.out_iter;    end
 % if isfield(opts, 'rho');         rho = opts.rho;              end
 % if isfield(opts, 'mu');          mu = opts.mu;                end
 % if isfield(opts, 'max_mu');      max_mu = opts.max_mu;        end
@@ -86,7 +86,7 @@ for R = min_R : max_R
         delta = norm(vec(X - last_X)) / norm_M;
         fprintf('||X_k+1-X_k||_F/||M||_F = %.4f\n', delta);
         if delta < out_tol
-            fprintf('converged at iter=%d\n', i);
+            fprintf('converged at iter=%d(%d)\n', i, iter_total(R));
             break ;
         end                   
     end

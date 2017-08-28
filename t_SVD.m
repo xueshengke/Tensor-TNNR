@@ -22,6 +22,9 @@ Uf = zeros(n1, n12, n3);
 Vf = zeros(n2, n12, n3);
 Sf = zeros(n12, n12, n3);
 
+Xf(isnan(Xf)) = 0;
+Xf(isinf(Xf)) = 0;
+
 t_rank = 0;
 for i = 1 : n3
     [Uf(:,:,i), Sf(:,:,i), Vf(:,:,i)] = svd(Xf(:,:,i), 'econ');

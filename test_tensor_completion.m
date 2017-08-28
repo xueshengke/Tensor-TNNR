@@ -1,8 +1,9 @@
 addpath(genpath(cd))
+close all
 clear
 clc
 
-pic_name = [ './image/re8.jpg'];
+pic_name = [ './image/re9.jpg'];
 % pic_name = [ './image/testimg.jpg'];
 I = double(imread(pic_name));
 X = I;
@@ -30,7 +31,9 @@ M(omega) = X(omega);
 alpha = [1, 1, 1e-3];
 alpha = alpha / sum(alpha);
 % [Xhat,err,iter] = lrtc_snn(M,omega,alpha,opts);
+tic
 [Xhat,obj,err,iter] = lrtc_tnn(M,omega,opts);
+toc
 
 obj
 err
@@ -40,6 +43,7 @@ Xhat = max(Xhat,0);
 Xhat = min(Xhat,maxP);
 RSE = norm(X(:)-Xhat(:))/norm(X(:))
 [erec, psnr] = PSNR(X, Xhat, omega, maxP)
+rankX = rank(Xhat(:,:,1))
 
 figure(1)
 subplot(1,3,1)

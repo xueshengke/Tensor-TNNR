@@ -21,7 +21,7 @@ for i = 1 : num_mask
 end
 
 %% parameter configuration
-image_id = 8;            % select an image for experiment
+image_id = 9;            % select an image for experiment
 mask_id  = 4;            % select a mask for experiment
 
 para.block = 0;          % 1 for block occlusion, 0 for random noise
@@ -47,12 +47,12 @@ opts.min_R =  1;         % minimum rank of chosen image
 opts.max_R = 15;         % maximum rank of chosen image
 
 opts.mu = 1e-3;
-opts.rho = 1.0;
+opts.rho = 1.05;
 opts.max_mu = 1e10;
-opts.out_tol = 5e-3;
+opts.out_tol = 1e-3;
 opts.tol = 1e-4;
-opts.out_iter = 100;
-opts.max_iter = 500;
+opts.out_iter = 50;
+opts.max_iter = 200;
 opts.maxP = 255;
 opts.DEBUG = 1;
 
