@@ -53,6 +53,9 @@ opts.out_tol = 1e-3;
 opts.tol = 1e-4;
 opts.out_iter = 50;
 opts.max_iter = 200;
+opts.apgl_tol = 1e-4;
+opts.apgl_iter = 200;
+opts.lambda = 1e-2;
 opts.maxP = 255;
 opts.DEBUG = 1;
 
@@ -82,13 +85,70 @@ end
 M = zeros(n1, n2, n3);
 M(omega) = X_full(omega);
 max_P = opts.maxP;
-%% test
-%% low-rank tensor completion based on truncated tensor nuclear norm
-fprintf('ADMM optimization method to recovery an image with missing pixels\n');
 
-t1 = tic;
-[Xhat, admm_res] = lrtc_ttnn(X_full, omega, opts);
-toc(t1)
+%% tensor truncated tensor nuclear norm, using ADMM
+% fprintf('ADMM method to recover an image with missing pixels\n');
+% 
+% t1 = tic;
+% [Xhat, admm_res] = lrtc_ttnn(X_full, omega, opts);
+% toc(t1)
+% 
+% % Xhat = max(Xhat, 0);
+% % Xhat = min(Xhat, max_P);
+% % RSE = norm(X_full(:)-Xhat(:))/norm(X_full(:))
+% % [erec, psnr] = PSNR(X_full, Xhat, omega, max_P)
+% 
+% figure(1)
+% subplot(1,3,1)
+% imshow(X_full/max_P)
+% title('original image')
+% subplot(1,3,2)
+% imshow(M/max_P)
+% title('incompelte image')
+% subplot(1,3,3)
+% imshow(Xhat/max_P)
+% title('recovered image')
+% 
+% admm_rank = admm_res.best_rank;
+% admm_psnr = admm_res.best_psnr;
+% admm_erec = admm_res.best_erec;
+% admm_time_cost = admm_res.time(admm_rank);
+% admm_iteration = admm_res.iterations(admm_rank);
+% admm_total_iter = admm_res.total_iter(admm_rank);
+% 
+% fprintf('\nTNNR-ADMM: ');
+% fprintf('rank=%d, psnr=%.4f, erec=%.4f, time=%f s, iteration=%d(%d)\n', ...
+%     admm_rank, admm_psnr, admm_erec, admm_time_cost, admm_iteration, ...
+%     admm_total_iter);
+% disp(' ');
+% 
+% figure('NumberTitle', 'off', 'Name', 'TNNR-ADMM result');
+% subplot(2, 2, 1);
+% plot(admm_res.Rank, admm_res.Psnr, 'o-');
+% xlabel('Rank');
+% ylabel('PSNR');
+% 
+% subplot(2, 2, 2);
+% plot(admm_res.Rank, admm_res.Erec, 'diamond-');
+% xlabel('Rank');
+% ylabel('Recovery error');
+% 
+% subplot(2, 2, 3);
+% plot(admm_res.Psnr_iter, 'square-');
+% xlabel('Iteration');
+% ylabel('PSNR');
+% 
+% subplot(2, 2, 4);
+% plot(admm_res.Erec_iter, '^-');
+% xlabel('Iteration');
+% ylabel('Recovery error');
+
+%% tensor truncated tensor nuclear norm, using APGL
+fprintf('APGL method to recover an image with missing pixels\n');
+
+t2 = tic;
+[Xhat, apgl_res] = ttnn_apgl(X_full, omega, opts);
+toc(t2)
 
 % Xhat = max(Xhat, 0);
 % Xhat = min(Xhat, max_P);
@@ -106,36 +166,36 @@ subplot(1,3,3)
 imshow(Xhat/max_P)
 title('recovered image')
 
-admm_rank = admm_res.best_rank;
-admm_psnr = admm_res.best_psnr;
-admm_erec = admm_res.best_erec;
-admm_time_cost = admm_res.time(admm_rank);
-admm_iteration = admm_res.iterations(admm_rank);
-admm_total_iter = admm_res.total_iter(admm_rank);
+apgl_rank = apgl_res.best_rank;
+apgl_psnr = apgl_res.best_psnr;
+apgl_erec = apgl_res.best_erec;
+apgl_time_cost = apgl_res.time(apgl_rank);
+apgl_iteration = apgl_res.iterations(apgl_rank);
+apgl_total_iter = apgl_res.total_iter(apgl_rank);
 
-fprintf('\nTNNR-ADMM: ');
+fprintf('\nTNNR-APGL: ');
 fprintf('rank=%d, psnr=%.4f, erec=%.4f, time=%f s, iteration=%d(%d)\n', ...
-    admm_rank, admm_psnr, admm_erec, admm_time_cost, admm_iteration, ...
-    admm_total_iter);
+    apgl_rank, apgl_psnr, apgl_erec, apgl_time_cost, apgl_iteration, ...
+    apgl_total_iter);
 disp(' ');
 
-figure('NumberTitle', 'off', 'Name', 'TNNR-ADMM result');
+figure('NumberTitle', 'off', 'Name', 'TNNR-APGL result');
 subplot(2, 2, 1);
-plot(admm_res.Rank, admm_res.Psnr, 'o-');
+plot(apgl_res.Rank, apgl_res.Psnr, 'o-');
 xlabel('Rank');
 ylabel('PSNR');
 
 subplot(2, 2, 2);
-plot(admm_res.Rank, admm_res.Erec, 'diamond-');
+plot(apgl_res.Rank, apgl_res.Erec, 'diamond-');
 xlabel('Rank');
 ylabel('Recovery error');
 
 subplot(2, 2, 3);
-plot(admm_res.Psnr_iter, 'square-');
+plot(apgl_res.Psnr_iter, 'square-');
 xlabel('Iteration');
 ylabel('PSNR');
 
 subplot(2, 2, 4);
-plot(admm_res.Erec_iter, '^-');
+plot(apgl_res.Erec_iter, '^-');
 xlabel('Iteration');
 ylabel('Recovery error');
