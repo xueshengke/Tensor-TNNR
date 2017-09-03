@@ -1,17 +1,9 @@
 This code includes the detailed implementation of the paper:
 
 Reference:
-S. Xue, W. Qiu, F. Liu, et~al., “Double Weighted Truncated Nuclear 
-Norm Regularization for Efficient Matrix Completion,” IEEE Transactions on 
-Image Processing, submitted, 2017.
-
-It is partially composed of TNNR code implementation. We would like to thank 
-Dr. Debing Zhang for sharing his code.
-
-Reference:
-Y. Hu, D. Zhang, J. Ye, X. Li, and X. He, “Fast and accurate matrix completion 
-via truncated nuclear norm regularization,” IEEE Transactions on Pattern 
-Analysis Machine Intelligence, vol. 35, no. 9, pp. 2117–2130, 2013.
+S. Xue, et~al., Low-rank Tensor Completion by Truncated Nuclear Norm 
+Regularization,?IEEE Conference on Computer Vision and Pattern Recognition, 
+submitted, 2018.
 
 The code contains:
 |--------------
@@ -30,8 +22,8 @@ The code contains:
 |-- result/                   directory for saving experimental results
 |-------------
 
-For the algorithm interpretation, please read our Xue et al. DW-TNNR paper 
-(2017), in which more details are demonstrated.
+For the algorithm interpretation, please read our Xue et al. Tensor TNNR 
+paper (2018), in which more details are demonstrated.
 
 If you have any questions about this implementation, please do not hesitate 
 to contact me.
