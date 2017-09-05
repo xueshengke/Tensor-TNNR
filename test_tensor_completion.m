@@ -13,12 +13,12 @@ X = I;
 
 opts.mu = 1e-3;
 opts.tol = 1e-6;
-opts.rho = 1.2;
+opts.rho = 1.05;
 opts.max_iter = 500;
 opts.DEBUG = 1;
 
 
-p = 0.6;
+p = 0.5;
 % maxP = max(abs(X(:)));
 maxP = 255;
 omega = find(rand(n1*n2*n3,1)<p);
@@ -55,8 +55,6 @@ title('incompelte image')
 subplot(1,3,3)
 imshow(Xhat/maxP)
 title('recovered image')
-
-% pause
 
 %% test lrtcR_snn
 % E = randn(n1,n2,n3)/100;
