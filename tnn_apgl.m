@@ -34,7 +34,7 @@ for k = 1 : apgl_iter
     if mod(k, DISPLAY_EVERY) == 0
         obj = tnn;
         err = norm(dX(:));
-        fprintf(['iter %d,\t delta=%.4f,\t mu=%.4f,\t rank=%d,' ...
+        fprintf(['iter %d,\t delta=%.4f,\t mu=%.4f,\t t-rank=%d,' ...
             '\t obj=%.4f,\t err=%.4f\n'], k, delta, lambda, trank, obj, err);
     end
     if delta < apgl_tol

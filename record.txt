@@ -1,70 +1,85 @@
-40% elements random loss
+50% elements random loss
 ---------------------------------------------
 tensor TNNR ADMM
 imaeg       rank    PSNR    time    iteration
-re1.jpg     14      37.36   26.12   205
-re2.jpg     13      30.52   25.95   189
-re3.jpg     20      32.47   25.33   189
-re4.jpg     18      44.32   21.01   161
-re5.jpg     13      30.87   25.42   187
-re6.jpg     20      53.03   21.20   172
-re7.jpg     14      35.67   28.12   207
-re8.jpg     10      39.76   29.19   159
-re9.jpg     11      27.78   37.03   215
+re1.jpg     9       34.64   31.73   200
+re2.jpg     6       27.52   29.36   179
+re3.jpg     10      29.72   28.32   177
+re4.jpg     9       40.48   25.70   155
+re5.jpg     9       28.61   37.05   219
+re6.jpg     14      50.11   25.73   173
+re7.jpg     7       32.48   30.89   193
+re8.jpg     3       36.89   23.75   152
+re9.jpg     9       25.47   42.66   269
 
 ---------------------------------------------
 tensor TNNR APGL
 imaeg       rank    PSNR    time    iteration
-re1.jpg     3       35.59   20.92   133
-re2.jpg     1       29.22   25.87   163
-re3.jpg     1       31.27   23.58   144
-re4.jpg     4       40.05   18.30   111
-re5.jpg     1       30.38   22.46   143
-re6.jpg     1       46.25   14.26   96
-re7.jpg     1       34.54   21.88   140
-re8.jpg     1       37.62   18.64   126
-re9.jpg     3       26.99   23.86   166
+re1.jpg     2       33.68   23.48   150
+re2.jpg     1       27.13   28.17   183
+re3.jpg     2       28.87   25.12   163
+re4.jpg     2       35.99   20.96   131
+re5.jpg     1       28.21   26.29   163
+re6.jpg     2       42.59   16.61   113
+re7.jpg     1       31.38   24.68   159
+re8.jpg     1       34.25   22.14   142
+re9.jpg     4       25.08   28.96   191
 
 ---------------------------------------------
-tensor LRMC
+tensor LRTC
 imaeg       rank    PSNR    time    iteration
-re1.jpg     300     21.96   18.20   101
-re2.jpg     300     27.54   18.24   98
-re3.jpg     300     26.82   18.45   100
-re4.jpg     300     36.67   18.83   102
-re5.jpg     300     29.35   17.69   95
-re6.jpg     300     49.17   17.47   97
-re7.jpg     300     26.07   18.53   100
-re8.jpg     300     37.92   18.57   98
-re9.jpg     300     22.54   18.30   100
+re1.jpg     
+re2.jpg     
+re3.jpg     
+re4.jpg     
+re5.jpg     
+re6.jpg     
+re7.jpg     
+re8.jpg     
+re9.jpg     
+
+---------------------------------------------
+matrix LRMC
+imaeg       rank    PSNR    time    iteration
+re1.jpg     
+re2.jpg     
+re3.jpg     
+re4.jpg     
+re5.jpg     
+re6.jpg     
+re7.jpg     
+re8.jpg     
+re9.jpg     
 
 ---------------------------------------------
 TNNR-ADMM
 imaeg       rank    PSNR    time    iteration
-re1.jpg     12		31.29	57.26	467
-re2.jpg     7		22.58	81.23	629
-re3.jpg     6		25.23	56.01	448
-re4.jpg     17		33.72	79.81	616
-re5.jpg     5		25.60	59.02	449
-re6.jpg     3		43.03	30.79	248
-re7.jpg     19		27.11	136.51	1025
-re8.jpg     10		29.40	58.13	436
-re9.jpg     9		21.90	85.41	735
+re1.jpg     
+re2.jpg     
+re3.jpg     
+re4.jpg     
+re5.jpg     
+re6.jpg     
+re7.jpg     
+re8.jpg     
+re9.jpg     
 
 ---------------------------------------------
 TNNR-APGL
 imaeg       rank    PSNR    time    iteration
-re1.jpg     20		30.26	18.89	177
-re2.jpg     9		22.75	28.69	254
-re3.jpg     18		25.14	27.02	222
-re4.jpg     20		32.13	21.21	173
-re5.jpg     12		25.67	25.28	215
-re6.jpg     11		39.72	13.98	97
-re7.jpg     20		27.06	30.38	251
-re8.jpg     14		29.38	22.08	183
-re9.jpg     18		21.99	31.03	266
+re1.jpg     
+re2.jpg     
+re3.jpg     
+re4.jpg     
+re5.jpg     
+re6.jpg     
+re7.jpg     
+re8.jpg     
+re9.jpg     
 
 ---------------------------------------------
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+40% random loss, invalid data now
 TNNR-WRE
 imaeg       rank    PSNR    time    iteration
 re1.jpg     11		31.18	5.06	56
