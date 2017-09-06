@@ -54,28 +54,28 @@ re9.jpg     184     21.00   19.82   272
 ---------------------------------------------
 TNNR-ADMM
 image       rank    PSNR    time    iteration
-re1.jpg     
-re2.jpg     
-re3.jpg     
-re4.jpg     
-re5.jpg     
-re6.jpg     
-re7.jpg     
-re8.jpg     
-re9.jpg     
+re1.jpg     10      30.34   75.34   593
+re2.jpg     5       21.91   100.15  780
+re3.jpg     5       24.51   67.92   560
+re4.jpg     13      32.16   71.92   580
+re5.jpg     4       24.91   66.65   540
+re6.jpg     3       42.78   36.49   289
+re7.jpg     15      25.78   129.79  1072
+re8.jpg     8       28.69   78.62   577
+re9.jpg     8       21.14   117.15  943
 
 ---------------------------------------------
 TNNR-APGL
 image       rank    PSNR    time    iteration
-re1.jpg     
-re2.jpg     
-re3.jpg     
-re4.jpg     
-re5.jpg     
-re6.jpg     
-re7.jpg     
-re8.jpg     
-re9.jpg     
+re1.jpg     3       29.20   15.93   132
+re2.jpg     8       22.15   33.73   289
+re3.jpg     2       24.43   17.49   148
+re4.jpg     15      31.05   23.42   196
+re5.jpg     6       25.02   24.43   228
+re6.jpg     1       38.92   12.36   102
+re7.jpg     15      25.79   33.69   287
+re8.jpg     12      28.77   24.87   207
+re9.jpg     2       21.07   20.24   176
 
 ---------------------------------------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
