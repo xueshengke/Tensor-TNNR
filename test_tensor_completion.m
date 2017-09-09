@@ -3,7 +3,7 @@ close all
 clear
 clc
 
-pic_name = [ './new_image/new3.jpg'];
+pic_name = [ './new_image/new10.jpg'];
 % pic_name = [ './image/testimg.jpg'];
 I = double(imread(pic_name));
 X = I;

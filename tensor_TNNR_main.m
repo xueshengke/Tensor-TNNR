@@ -9,10 +9,13 @@ admm_result = './result/admm/image';
 apgl_result = './result/apgl/image';
 if ~exist(admm_result, 'dir'),	mkdir(admm_result);	end
 if ~exist(apgl_result, 'dir'),  mkdir(apgl_result);	end
-image_list = {'re1.jpg', 're2.jpg', 're3.jpg', 're4.jpg', 're5.jpg', ...
-              're6.jpg', 're7.jpg', 're8.jpg', 're9.jpg', 're10.jpg', ...
+% image_list = {'re1.jpg', 're2.jpg', 're3.jpg', 're4.jpg', 're5.jpg', ...
+%               're6.jpg', 're7.jpg', 're8.jpg', 're9.jpg', 're10.jpg', ...
+%              };
+image_list = {'new1.jpg', 'new2.jpg', 'new3.jpg', 'new4.jpg', 'new5.jpg', ...
+              'new6.jpg', 'new7.jpg', 'new8.jpg', 'new9.jpg', 'new10.jpg', ...
              };
-
+         
 file_list = dir('mask');
 num_mask = length(file_list) - 2;
 mask_list = cell(num_mask, 1);
@@ -21,7 +24,7 @@ for i = 1 : num_mask
 end
 
 %% parameter configuration
-image_id = 9;           % select an image for experiment
+image_id = 10;           % select an image for experiment
 mask_id  = 4;           % select a mask for experiment
 
 opts.block = 0;         % 1 for block occlusion, 0 for random noise
@@ -31,13 +34,13 @@ opts.save_eps = 1;      % save eps figure in result directory
 % images have different ranks, and various masks affect the ranks, too.
 
 opts.min_R = 1;         % minimum rank of chosen image
-opts.max_R = 15;        % maximum rank of chosen image
+opts.max_R = 20;        % maximum rank of chosen image
 
 opts.out_iter = 50;     % maximum number of outer iteration
 opts.out_tol = 1e-3;    % tolerance of outer iteration
 
-opts.mu = 1e-3;         % mu of ADMM optimization
-opts.rho = 1.05;        % rho of ADMM optimization 1.05
+opts.mu = 5e-4;         % mu of ADMM optimization
+opts.rho = 1.15;        % rho of ADMM optimization 1.05
 opts.max_mu = 1e10;     % max value of mu
 opts.admm_iter = 200;   % maximum number of ADMM iteration
 opts.admm_tol = 1e-4;   % tolerance of ADMM iteration
