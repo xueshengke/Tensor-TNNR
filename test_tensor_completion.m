@@ -3,7 +3,7 @@ close all
 clear
 clc
 
-pic_name = [ './new_image/new9.jpg'];
+pic_name = [ './new_image/new1.jpg'];
 % pic_name = [ './image/testimg.jpg'];
 I = double(imread(pic_name));
 X = I;
@@ -13,7 +13,7 @@ X = I;
 
 opts.mu = 1e-3;
 opts.tol = 1e-6;
-opts.rho = 1.05;
+opts.rho = 1.05;    % 1.05
 opts.max_iter = 500;
 opts.DEBUG = 1;
 
@@ -32,8 +32,8 @@ alpha = [1, 1, 1e-3];
 alpha = alpha / sum(alpha);
 
 tic
-% [Xhat,err,iter] = lrtc_snn(M,omega,alpha,opts);
-[Xhat,obj,err,iter] = lrtc_tnn(M,omega,opts);
+[Xhat,err,iter] = lrtc_snn(M,omega,alpha,opts);
+% [Xhat,obj,err,iter] = lrtc_tnn(M,omega,opts);
 toc
 
 obj

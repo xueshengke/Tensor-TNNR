@@ -74,6 +74,8 @@ M(omega) = X(omega);
 %% test LRMC
 %% low-rank matrix completion
 
+lambda = 1/sqrt(min(n1,n2));
+
 Xrec = zeros(size(X));
 mask = zeros(n1*n2*n3, 1);
 mask(omega) = 1;
@@ -81,7 +83,8 @@ mask = reshape(mask, [n1 n2 n3]);
 iteration = zeros(n3, 1);
 t2 = tic;
 for i = 1 : n3
-    [Xhat,obj,err,iter] = lrmc(M(:,:,i), find(mask(:,:,i)), opts);
+    [Xhat,E,obj,err,iter] = lrmcR(M(:,:,i), find(mask(:,:,i)), lambda, opts);
+%     [Xhat,obj,err,iter] = lrmc(M(:,:,i), find(mask(:,:,i)), opts);
 %     [Xhat,obj,err,iter] = lrmc(M(:,:,i), find(observed), opts);
     obj;
     err;
@@ -95,7 +98,7 @@ for i = 1 : n3
 end
 toc(t2)
 
-mean(iteration)
+sum(iteration)
 RSE = norm(X(:)-Xrec(:))/norm(X(:))
 [erec, psnr] = PSNR(X, Xrec, omega, maxP)
 rankX = rank(Xrec(:,:,1))
