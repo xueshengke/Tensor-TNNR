@@ -24,7 +24,7 @@ for i = 1 : num_mask
 end
 
 %% parameter configuration
-image_id = 9;           % select an image for experiment
+image_id = 1;           % select an image for experiment
 mask_id  = 4;           % select a mask for experiment
 
 opts.block = 0;         % 1 for block occlusion, 0 for random noise

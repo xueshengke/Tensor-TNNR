@@ -11,7 +11,7 @@ if ~exist(admm_result, 'dir'),	mkdir(admm_result);	end
 if ~exist(apgl_result, 'dir'),  mkdir(apgl_result);	end
 
 %% parameter configuration
-opts.lost = 0.50;       % percentage of lost elements in matrix
+opts.lost = 0.90;       % percentage of lost elements in matrix
 
 opts.min_R = 1;         % minimum rank of chosen image
 opts.max_R = 20;        % maximum rank of chosen image
@@ -19,8 +19,8 @@ opts.max_R = 20;        % maximum rank of chosen image
 opts.out_iter = 50;     % maximum number of outer iteration
 opts.out_tol = 1e-3;    % tolerance of outer iteration
 
-opts.mu = 1e-3;         % mu of ADMM optimization
-opts.rho = 1.05;        % rho of ADMM optimization
+opts.mu = 5e-4;         % mu of ADMM optimization
+opts.rho = 1.15;        % rho of ADMM optimization
 opts.max_mu = 1e10;     % max value of mu
 opts.admm_iter = 200;   % maximum number of ADMM iteration
 opts.admm_tol = 1e-4;   % tolerance of ADMM iteration
@@ -29,15 +29,15 @@ opts.lambda = 1e-2;     % lambda of APGL optimization
 opts.apgl_iter = 200;   % maximum number of APGL iteration
 opts.apgl_tol = 1e-4;   % tolerance of APGL iteration
 
-opts.maxP = 255;
+opts.maxP = 1;
 
 %% generate synthetic data for experiment
 image_name = 'synthetic_data';
-n1 = 200;
-n2 = 150;
-n3 = 5;
-r = 10;
-sigma = 0.1;    % [0.1, 0.9]
+n1 = 100;
+n2 = 100;
+n3 = 50;
+r0 = 10;
+% sigma = 0.1;    % [0.1, 0.9]
 
 % random loss different positions along all channels
 lost = opts.lost;
@@ -46,13 +46,13 @@ mask = double(rand(n1,n2,n3) < (1-lost));
 omega = find(mask);
 
 max_P = opts.maxP;
-L = randn(n1, r, n3);
-R = randn(n2, r, n3);
-noise = sigma * randn(n1, n2, n3);
+L = randn(n1, r0, n3);
+R = randn(n2, r0, n3);
+% noise = sigma * randn(n1, n2, n3);
 M = tprod(L, tran(R));
-M(omega) = M(omega) + noise(omega);
-X_full = 255 * ( M - min(M(:)) ) / ( max(M(:)) - min(M(:)) );
-
+% M(omega) = M(omega) + noise(omega);
+X_full = max_P * ( M - min(M(:)) ) / ( max(M(:)) - min(M(:)) );
+% X_full = M;
 M = zeros(n1, n2, n3);
 M(omega) = X_full(omega);
 
@@ -66,7 +66,7 @@ toc(t1)
 
 admm_rank = admm_res.best_rank;
 admm_psnr = admm_res.best_psnr;
-admm_erec = admm_res.best_erec / 255;
+admm_erec = admm_res.best_erec / max_P;
 admm_time_cost = admm_res.time(admm_rank);
 admm_iteration = admm_res.iterations(admm_rank);
 admm_total_iter = admm_res.total_iter(admm_rank);
@@ -84,7 +84,7 @@ xlabel('Rank')
 ylabel('PSNR')
 
 subplot(2, 2, 2)
-plot(admm_res.Rank, admm_res.Erec / 255, 'diamond-')
+plot(admm_res.Rank, admm_res.Erec / max_P, 'diamond-')
 xlabel('Rank')
 ylabel('Recovery error')
 
@@ -94,7 +94,7 @@ xlabel('Iteration')
 ylabel('PSNR')
 
 subplot(2, 2, 4)
-plot(admm_res.Erec_iter / 255, '^-')
+plot(admm_res.Erec_iter / max_P, '^-')
 xlabel('Iteration')
 ylabel('Recovery error')
 
@@ -115,7 +115,7 @@ fprintf(fid, '%s\n', ['ADMM iteration: '  num2str(opts.admm_iter)  ]);
 fprintf(fid, '%s\n', ['ADMM tolerance: '  num2str(opts.admm_tol)   ]);
 fprintf(fid, '%s\n', ['max pixel value: ' num2str(opts.maxP)       ]);
 
-fprintf(fid, '%s\n', ['sigma: '           num2str(sigma)           ]);
+% fprintf(fid, '%s\n', ['sigma: '           num2str(sigma)           ]);
 fprintf(fid, '%s\n', ['rank: '            num2str(admm_rank)       ]);
 fprintf(fid, '%s\n', ['psnr: '            num2str(admm_psnr)       ]);
 fprintf(fid, '%s\n', ['recovery error: '  num2str(admm_erec)       ]);
@@ -134,7 +134,7 @@ toc(t2)
 
 apgl_rank = apgl_res.best_rank;
 apgl_psnr = apgl_res.best_psnr;
-apgl_erec = apgl_res.best_erec / 255;
+apgl_erec = apgl_res.best_erec / max_P;
 apgl_time_cost = apgl_res.time(apgl_rank);
 apgl_iteration = apgl_res.iterations(apgl_rank);
 apgl_total_iter = apgl_res.total_iter(apgl_rank);
@@ -152,7 +152,7 @@ xlabel('Rank')
 ylabel('PSNR')
 
 subplot(2, 2, 2)
-plot(apgl_res.Rank, apgl_res.Erec / 255, 'diamond-')
+plot(apgl_res.Rank, apgl_res.Erec / max_P, 'diamond-')
 xlabel('Rank')
 ylabel('Recovery error')
 
@@ -162,7 +162,7 @@ xlabel('Iteration')
 ylabel('PSNR')
 
 subplot(2, 2, 4)
-plot(apgl_res.Erec_iter / 255, '^-')
+plot(apgl_res.Erec_iter / max_P, '^-')
 xlabel('Iteration')
 ylabel('Recovery error')
 
@@ -181,7 +181,7 @@ fprintf(fid, '%s\n', ['APGL iteration: '  num2str(opts.apgl_iter)  ]);
 fprintf(fid, '%s\n', ['APGL tolerance: '  num2str(opts.apgl_tol)   ]);
 fprintf(fid, '%s\n', ['max pixel value: ' num2str(opts.maxP)       ]);
 
-fprintf(fid, '%s\n', ['sigma: '           num2str(sigma)           ]);
+% fprintf(fid, '%s\n', ['sigma: '           num2str(sigma)           ]);
 fprintf(fid, '%s\n', ['rank: '            num2str(apgl_rank)       ]);
 fprintf(fid, '%s\n', ['psnr: '            num2str(apgl_psnr)       ]);
 fprintf(fid, '%s\n', ['recovery error: '  num2str(apgl_erec)       ]);
