@@ -1,3 +1,10 @@
+% Shengke Xue, Zhejiang University, September 2017. 
+% Contact information: see readme.txt.
+%
+% Reference: 
+% S. Xue, et~al., Low-rank Tensor Completion by Truncated Nuclear Norm 
+% Regularization, International Conference on ***, submitted, 2018.
+
 %% add path
 addpath(genpath(cd))
 close all
@@ -28,7 +35,7 @@ image_id = 1;           % select an image for experiment
 mask_id  = 4;           % select a mask for experiment
 
 opts.block = 0;         % 1 for block occlusion, 0 for random noise
-opts.lost = 0.50;       % percentage of lost elements in matrix
+opts.lost = 0.10;       % percentage of lost elements in matrix
 opts.save_eps = 1;      % save eps figure in result directory
 % it requires to test all ranks from min_R to max_R, note that different
 % images have different ranks, and various masks affect the ranks, too.
@@ -49,7 +56,7 @@ opts.lambda = 1e-2;     % lambda of APGL optimization
 opts.apgl_iter = 200;   % maximum number of APGL iteration
 opts.apgl_tol = 1e-4;   % tolerance of APGL iteration
 
-opts.maxP = 255;
+opts.maxP = 255;        % max pixel value
 
 %% select an image and a mask for experiment
 image_name = image_list{image_id};

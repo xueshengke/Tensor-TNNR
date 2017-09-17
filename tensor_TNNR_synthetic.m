@@ -1,3 +1,10 @@
+% Shengke Xue, Zhejiang University, September 2017. 
+% Contact information: see readme.txt.
+%
+% Reference: 
+% S. Xue, et~al., Low-rank Tensor Completion by Truncated Nuclear Norm 
+% Regularization, International Conference on ***, submitted, 2018.
+
 %% add path
 addpath(genpath(cd))
 close all
@@ -29,7 +36,7 @@ opts.lambda = 1e-1;     % lambda of APGL optimization
 opts.apgl_iter = 200;   % maximum number of APGL iteration
 opts.apgl_tol = 1e-4;   % tolerance of APGL iteration
 
-opts.maxP = 1;
+opts.maxP = 1;          % max pixel value
 
 %% generate synthetic data for experiment
 image_name = 'synthetic_data';
@@ -37,7 +44,6 @@ n1 = 100;
 n2 = 100;
 n3 = 50;
 r0 = 10;
-% sigma = 0.1;    % [0.1, 0.9]
 
 % random loss different positions along all channels
 lost = opts.lost;
@@ -48,11 +54,8 @@ omega = find(mask);
 max_P = opts.maxP;
 L = randn(n1, r0, n3);
 R = randn(n2, r0, n3);
-% noise = sigma * randn(n1, n2, n3);
 M = tprod(L, tran(R));
-% M(omega) = M(omega) + noise(omega);
 X_full = max_P * ( M - min(M(:)) ) / ( max(M(:)) - min(M(:)) );
-% X_full = M;
 M = zeros(n1, n2, n3);
 M(omega) = X_full(omega);
 
@@ -115,7 +118,6 @@ fprintf(fid, '%s\n', ['ADMM iteration: '  num2str(opts.admm_iter)  ]);
 fprintf(fid, '%s\n', ['ADMM tolerance: '  num2str(opts.admm_tol)   ]);
 fprintf(fid, '%s\n', ['max pixel value: ' num2str(opts.maxP)       ]);
 
-% fprintf(fid, '%s\n', ['sigma: '           num2str(sigma)           ]);
 fprintf(fid, '%s\n', ['rank: '            num2str(admm_rank)       ]);
 fprintf(fid, '%s\n', ['psnr: '            num2str(admm_psnr)       ]);
 fprintf(fid, '%s\n', ['recovery error: '  num2str(admm_erec)       ]);
@@ -181,7 +183,6 @@ fprintf(fid, '%s\n', ['APGL iteration: '  num2str(opts.apgl_iter)  ]);
 fprintf(fid, '%s\n', ['APGL tolerance: '  num2str(opts.apgl_tol)   ]);
 fprintf(fid, '%s\n', ['max pixel value: ' num2str(opts.maxP)       ]);
 
-% fprintf(fid, '%s\n', ['sigma: '           num2str(sigma)           ]);
 fprintf(fid, '%s\n', ['rank: '            num2str(apgl_rank)       ]);
 fprintf(fid, '%s\n', ['psnr: '            num2str(apgl_psnr)       ]);
 fprintf(fid, '%s\n', ['recovery error: '  num2str(apgl_erec)       ]);

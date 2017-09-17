@@ -2,21 +2,13 @@ This code includes the detailed implementation of the paper:
 
 Reference:
 S. Xue, et~al., Low-rank Tensor Completion by Truncated Nuclear Norm 
-Regularization,?IEEE Conference on Computer Vision and Pattern Recognition, 
-submitted, 2018.
+Regularization, International Conference on ***, submitted, 2018.
 
 The code contains:
 |--------------
-|-- DW_TNNR_main.m            entrance to start the real image experiment
-|-- DW_TNNR_synthetic.m       entrance to start the synthetic experiment
-|-- function/                 
-    |-- DW_TNNR_algorithm.m   main part of DW-TNNR implementation
-    |-- PSNR.m                compute the PSNR and Erec for recovered image
-    |-- weight_exp.m          compute weight matrix by exponential function	
-    |-- weight_matrix.m       compute weight matrix in an increasing order
-    |-- weight_sort.m         sort the sequence of weight value according to
-                                  observed elements; rows with more observed 
-                                  elements are given smaller weights
+|-- tensor_TNNR_main.m        entrance to start the real image experiment
+|-- tensor_TNNR_synthetic.m   entrance to start the synthetic experiment
+|-- function/                 some basic tensor operators
 |-- image/                    directory for original images
 |-- mask/                     directory for various mask types, 300x300
 |-- result/                   directory for saving experimental results
