@@ -35,7 +35,7 @@ image_id = 1;           % select an image for experiment
 mask_id  = 4;           % select a mask for experiment
 
 opts.block = 0;         % 1 for block occlusion, 0 for random noise
-opts.lost = 0.10;       % percentage of lost elements in matrix
+opts.lost = 0.50;       % percentage of lost elements in matrix
 opts.save_eps = 1;      % save eps figure in result directory
 % it requires to test all ranks from min_R to max_R, note that different
 % images have different ranks, and various masks affect the ranks, too.

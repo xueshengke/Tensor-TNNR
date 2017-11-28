@@ -22,4 +22,3 @@ elseif dimA == 3 && dimB == 3
 end
 
 end
-

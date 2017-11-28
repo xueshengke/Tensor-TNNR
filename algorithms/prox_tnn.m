@@ -47,12 +47,17 @@ X = tprod( tprod(U,S), tran(V) );
 % S = S(:,:,1);   % why choose the 1st frontal slice only ?
 % tnn = sum(S(:)); % return the tensor nuclear norm of X, which is different
 % % from the definition in the CVPR 2016 paper
+% the original definition is wrong!s
 
-tnn = 0;
-for i = 1 : n3
-    diagS = diag(Sf(:, :, i));
-    tnn = tnn + sum(diagS(:));
-end
-tnn = tnn / n3;
+% tnn = 0;
+% for i = 1 : n3
+%     diagS = diag(Sf(:, :, i));
+%     tnn = tnn + sum(diagS(:));
+% end
+% tnn = tnn / n3;
+
+% our definition: tensor nuclear norm is the sum of singular values of the 
+% first frontal slice $\bar{\bm{S}}^{(1)}$ in the Fourier domain
+tnn = sum( diag( Sf(:,:,1) ) );
 
 end
