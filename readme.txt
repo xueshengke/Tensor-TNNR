@@ -1,21 +1,23 @@
 This code includes the detailed implementation of the paper:
 
 Reference:
-S. Xue, et~al., Low-rank Tensor Completion by Truncated Nuclear Norm 
-Regularization, International Conference on ***, submitted, 2018.
+S. Xue, W. Qiu, F. Liu, et~al. Low-rank Tensor Completion by Truncated 
+Nuclear Norm Regularization. 24th International Conference on Patern 
+Recognition, submitted, 2018.
 
 The code contains:
 |--------------
-|-- tensor_TNNR_main.m        entrance to start the real image experiment
-|-- tensor_TNNR_synthetic.m   entrance to start the synthetic experiment
+|-- tensor_TNNR_image.m       entrance to start the image experiment
+|-- tensor_TNNR_video.m       entrance to start the video experiment
+|-- algorithms/               some advanced algorithms
 |-- function/                 some basic tensor operators
 |-- image/                    directory for original images
 |-- mask/                     directory for various mask types, 300x300
 |-- result/                   directory for saving experimental results
 |-------------
 
-For the algorithm interpretation, please read our Xue et al. Tensor TNNR 
-paper (2018), in which more details are demonstrated.
+For the algorithm interpretation, please read our Xue et al. (2018) paper
+in 24th ICPR, in which more details are demonstrated.
 
 If you have any questions about this implementation, please do not hesitate 
 to contact me.

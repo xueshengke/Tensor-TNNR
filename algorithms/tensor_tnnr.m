@@ -3,7 +3,7 @@ function [X_best_rec, result] = tensor_tnnr(M, omega, opts)
 % Shengke Xue, Zhejiang University, September 2017. 
 % Contact information: see readme.txt.
 %
-% Xue et al. (2018) Tensor-TNN paper, International Conference on ***.
+% Xue et al. (2018) Tensor-TNN paper, ICPR.
 %--------------------------------------------------------------------------
 %    main loop of tensor completion based on truncated nuclear norm 
 %

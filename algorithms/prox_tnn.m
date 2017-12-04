@@ -1,6 +1,6 @@
 function [X, tnn, trank] = prox_tnn(Y, rho)
 
-% The proximal operator of the tensor nuclear norm of a 3 way tensor
+% The proximal operator of the tensor nuclear norm of a 3-order tensor
 %
 % min_X rho*||X||_*+0.5*||X-Y||_F^2
 %
@@ -9,11 +9,7 @@ function [X, tnn, trank] = prox_tnn(Y, rho)
 % X     -    n1*n2*n3 tensor
 % tnn   -    tensor nuclear norm of X
 % trank -    tensor tubal rank of X
-%
-% version 1.0 - 18/06/2016
-%
-% Written by Canyi Lu (canyilu@gmail.com)
-% 
+
 dim = ndims(Y);
 [n1, n2, n3] = size(Y);
 n12 = min(n1, n2);
@@ -44,17 +40,13 @@ V = ifft(Vf, [], dim);
 
 X = tprod( tprod(U,S), tran(V) );
 
-% S = S(:,:,1);   % why choose the 1st frontal slice only ?
-% tnn = sum(S(:)); % return the tensor nuclear norm of X, which is different
-% % from the definition in the CVPR 2016 paper
-% the original definition is wrong!s
-
 % tnn = 0;
 % for i = 1 : n3
 %     diagS = diag(Sf(:, :, i));
 %     tnn = tnn + sum(diagS(:));
 % end
-% tnn = tnn / n3;
+% tnn = tnn / n3;   % average sum of frontal slices in Fourier domain
+                    % definition in Lu, Canyi et al. (2016) CVPR paper
 
 % our definition: tensor nuclear norm is the sum of singular values of the 
 % first frontal slice $\bar{\bm{S}}^{(1)}$ in the Fourier domain
