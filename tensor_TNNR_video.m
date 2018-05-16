@@ -4,7 +4,7 @@
 % Reference: 
 % S. Xue, W. Qiu, F. Liu, et~al. Low-rank Tensor Completion by Truncated 
 % Nuclear Norm Regularization. 24th International Conference on Patern 
-% Recognition, submitted, 2018.
+% Recognition, accepted, 2018. (arXiv:1712.00704 [cs.CV])
 
 %% add path
 addpath(genpath(cd))
