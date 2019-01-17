@@ -3,8 +3,8 @@
 %
 % Reference: 
 % S. Xue, W. Qiu, F. Liu, et~al. Low-rank Tensor Completion by Truncated 
-% Nuclear Norm Regularization. 24th International Conference on Patern 
-% Recognition, accepted, 2018. (arXiv:1712.00704 [cs.CV])
+% Nuclear Norm Regularization. 24th International Conference on Pattern 
+% Recognition, Beijing, 2018, p.2600-2605. DOI 10.1109/ICPR.2018.8546008
 
 %% add path
 addpath(genpath(cd))
@@ -36,13 +36,13 @@ image_id = 1;           % select an image for experiment
 mask_id  = 1;           % select a mask for experiment
 
 opts.block = 0;         % 1 for block occlusion, 0 for random noise
-opts.lost = 0.65;       % percentage of lost elements in matrix
+opts.lost = 0.80;       % percentage of lost elements in matrix %65
 opts.save_eps = 0;      % save eps figure in result directory
 % it requires to test all ranks from min_R to max_R, note that different
 % images have different ranks, and various masks affect the ranks, too.
 
 opts.min_R = 1;         % minimum rank of chosen image
-opts.max_R = 20;        % maximum rank of chosen image
+opts.max_R = 6;        % maximum rank of chosen image
 
 opts.out_iter = 50;     % maximum number of outer iteration
 opts.out_tol = 1e-3;    % tolerance of outer iteration
@@ -199,19 +199,20 @@ fclose(fid);
 % apgl_time_cost = apgl_res.time(apgl_rank);
 % apgl_iteration = apgl_res.iterations(apgl_rank);
 % apgl_total_iter = apgl_res.total_iter(apgl_rank);
-
-% figure
-% subplot(1,3,1)
-% imshow(X_full/max_P)
-% title('original image')
-% subplot(1,3,2)
-% imshow(M/max_P)
-% title('incompelte image')
-% subplot(1,3,3)
-% imshow(X_hat/max_P)
-% title('recovered image')
-
-%% save eps figure in result directory
+% 
+% %% cannot display video by imshow
+% % figure
+% % subplot(1,3,1)
+% % imshow(X_full/max_P)
+% % title('original image')
+% % subplot(1,3,2)
+% % imshow(M/max_P)
+% % title('incompelte image')
+% % subplot(1,3,3)
+% % imshow(X_hat/max_P)
+% % title('recovered image')
+% 
+% %% save eps figure in result directory
 % % if opts.save_eps
 % %     fig_eps = figure;
 % %     imshow(X_hat ./ 255, 'border', 'tight');
@@ -222,7 +223,7 @@ fclose(fid);
 % %     fprintf('eps figure saved in %s.eps\n', fig_name);
 % %     close(fig_eps);
 % % end
-
+% 
 % fprintf('\nTensor TNNR (APGL):\n');
 % fprintf('rank=%d, psnr=%.4f, erec=%.4f, time=%.3f s, iteration=%d(%d)\n', ...
 %     apgl_rank, apgl_psnr, apgl_erec, apgl_time_cost, apgl_iteration, ...
@@ -249,8 +250,8 @@ fclose(fid);
 % plot(apgl_res.Erec_iter, '^-')
 % xlabel('Iteration')
 % ylabel('Recovery error')
-
-%% record test results
+% 
+% %% record test results
 % outputFileName = fullfile(apgl_result, 'parameters.txt'); 
 % fid = fopen(outputFileName, 'a') ;
 % fprintf(fid, '****** %s ******\n', datestr(now,0));

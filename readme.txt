@@ -2,8 +2,8 @@ This code includes the detailed implementation of the paper:
 
 Reference:
 S. Xue, W. Qiu, F. Liu, et~al. Low-rank Tensor Completion by Truncated 
-Nuclear Norm Regularization. 24th International Conference on Patern 
-Recognition, accepted, 2018. (arXiv:1712.00704 [cs.CV])
+Nuclear Norm Regularization. 24th International Conference on Pattern 
+Recognition, Beijing, 2018, p.2600-2605. DOI 10.1109/ICPR.2018.8546008
 
 The code contains:
 |--------------
